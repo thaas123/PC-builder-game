@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0c111b">
+  <title>Silicon Workshop — PC Builder</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div><h1>Silicon Workshop</h1><p>Build, validate, and benchmark a custom PC.</p></div>
+  <div class="top-actions"><button id="tutorialBtn">Tutorial</button><button id="resetBtn" class="danger">Reset build</button></div>
+</header>
+<main class="layout">
+  <section class="panel catalog">
+    <div class="panel-title-row"><h2>Parts catalog</h2><span class="badge" id="partCount">0 parts</span></div>
+    <input id="search" type="search" placeholder="Search parts and specifications">
+    <div id="categories" class="categories"></div>
+    <div class="catalog-tools">
+      <strong>Internet catalog</strong>
+      <input id="remoteUrl" type="url" placeholder="https://example.com/parts.json">
+      <button id="loadRemoteBtn" class="secondary">Load internet catalog</button>
+      <small>Accepts a JSON array or an object containing a <code>parts</code> array. The server must allow browser requests.</small>
+    </div>
+    <div id="parts" class="parts-list"></div>
+  </section>
+
+  <section class="panel workspace">
+    <div class="status-strip">
+      <div><span>Cost</span><strong id="cost">$0</strong></div>
+      <div><span>Estimated draw</span><strong id="power">35 W</strong></div>
+      <div><span>Progress</span><strong id="progress">0%</strong></div>
+      <div><span>Status</span><strong id="compat">Incomplete</strong></div>
+    </div>
+    <div id="tip" class="tip"></div>
+    <div class="bench-wrap">
+      <div class="bench">
+        <div class="case-shell dropzone" data-slot="case"><span class="empty-label">CASE</span>
+          <div class="case-window">
+            <div class="motherboard dropzone" data-slot="motherboard"><span>MOTHERBOARD</span>
+              <div class="socket dropzone" data-slot="cpu"><span>CPU</span></div>
+              <div class="ram-bank dropzone" data-slot="ram"><span>RAM</span></div>
+              <div class="m2 dropzone" data-slot="storage"><span>STORAGE</span></div>
+              <div class="pcie dropzone" data-slot="gpu"><span>GPU</span></div>
+            </div>
+            <div class="cooler dropzone" data-slot="cooler"><span>COOLER</span></div>
+            <div class="case-fans dropzone" data-slot="fans"><span>FANS</span></div>
+            <div class="psu dropzone" data-slot="psu"><span>PSU</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="compatDetails" class="compat-details">No conflicts detected so far.</div>
+    <div class="build-list-wrap"><h3>Installed parts</h3><div id="buildList" class="build-list"></div></div>
+  </section>
+
+  <section class="panel benchmark">
+    <h2>Performance estimator</h2>
+    <label>Game<select id="game"></select></label>
+    <label>Resolution<select id="resolution"><option value="1080">1920 × 1080</option><option value="1440">2560 × 1440</option><option value="4k">3840 × 2160</option></select></label>
+    <label>Preset<select id="preset"><option value="low">Low</option><option value="medium">Medium</option><option value="high" selected>High</option><option value="ultra">Ultra</option></select></label>
+    <button id="runBenchmark" class="primary">Run estimate</button>
+    <div class="benchmark-screen">
+      <div class="fps-big"><span id="fps">—</span><small>Average FPS</small></div>
+      <div class="bench-grid">
+        <div><span>1% low</span><strong id="low">—</strong></div>
+        <div><span>Bottleneck</span><strong id="bottleneck">—</strong></div>
+        <div><span>CPU temperature</span><strong id="temperature">—</strong></div>
+        <div><span>Noise</span><strong id="noise">—</strong></div>
+      </div>
+    </div>
+    <p class="disclaimer">Estimates are for comparison and are not measured benchmark results. Actual performance depends on drivers, cooling, game versions, settings, and silicon variation.</p>
+  </section>
+</main>
+<dialog id="tutorialDialog">
+  <button id="closeTutorial" class="dialog-close" aria-label="Close">×</button>
+  <h2>How to build</h2>
+  <ol>
+    <li>Choose a category and select a part.</li>
+    <li>Drag it into the matching slot. On iPhone, tap the part and then tap its slot.</li>
+    <li>Watch the compatibility panel for socket, memory, size, cooling, and power conflicts.</li>
+    <li>Install all nine categories and run the performance estimate.</li>
+    <li>Tap an installed part in the list to remove it.</li>
+  </ol>
+</dialog>
+<script src="app.js"></script>
+</body>
+</html>
