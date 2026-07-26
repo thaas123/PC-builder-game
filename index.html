@@ -4,8 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#0c111b">
+  <meta name="description" content="Build, validate, and benchmark a custom gaming PC.">
+  <link rel="manifest" href="manifest.webmanifest">
   <title>Silicon Workshop — PC Builder</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="web-sources.css">
 </head>
 <body>
 <header class="topbar">
@@ -17,12 +20,26 @@
     <div class="panel-title-row"><h2>Parts catalog</h2><span class="badge" id="partCount">0 parts</span></div>
     <input id="search" type="search" placeholder="Search parts and specifications">
     <div id="categories" class="categories"></div>
-    <div class="catalog-tools">
-      <strong>Internet catalog</strong>
-      <input id="remoteUrl" type="url" placeholder="https://example.com/parts.json">
-      <button id="loadRemoteBtn" class="secondary">Load internet catalog</button>
-      <small>Accepts a JSON array or an object containing a <code>parts</code> array. The server must allow browser requests.</small>
+    <div class="catalog-tools web-sync-panel">
+      <div class="source-heading"><strong>Live web catalog</strong><span id="webSourceStatus" class="source-status">Built-in only</span></div>
+      <button id="syncWebPartsBtn" class="primary web-sync-button">Get parts, specs, and images from the web</button>
+      <label class="compact-label">Maximum parts per source
+        <select id="webPartLimit">
+          <option value="50">50</option>
+          <option value="100" selected>100</option>
+          <option value="250">250</option>
+          <option value="500">500</option>
+        </select>
+      </label>
+      <div id="webSourceResults" class="source-results" aria-live="polite"></div>
+      <small>Combines a structured PC-parts dataset with Wikidata/Wikimedia metadata and images. Results are normalized and duplicates are merged.</small>
     </div>
+    <details class="catalog-tools advanced-loader">
+      <summary>Load another JSON catalog</summary>
+      <input id="remoteUrl" type="url" placeholder="https://example.com/parts.json">
+      <button id="loadRemoteBtn" class="secondary">Load custom catalog</button>
+      <small>Accepts a JSON array or an object containing a <code>parts</code> array. The server must allow browser requests.</small>
+    </details>
     <div id="parts" class="parts-list"></div>
   </section>
 
@@ -77,6 +94,7 @@
   <button id="closeTutorial" class="dialog-close" aria-label="Close">×</button>
   <h2>How to build</h2>
   <ol>
+    <li>Press <strong>Get parts, specs, and images from the web</strong> to expand the catalog.</li>
     <li>Choose a category and select a part.</li>
     <li>Drag it into the matching slot. On iPhone, tap the part and then tap its slot.</li>
     <li>Watch the compatibility panel for socket, memory, size, cooling, and power conflicts.</li>
@@ -85,5 +103,6 @@
   </ol>
 </dialog>
 <script src="app.js"></script>
+<script src="web-sources.js"></script>
 </body>
 </html>
