@@ -1,0 +1,19 @@
+{
+  "name": "Silicon Workshop — PC Builder",
+  "short_name": "PC Builder",
+  "description": "Build, validate, and benchmark a custom gaming PC.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0c111b",
+  "theme_color": "#0c111b",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
