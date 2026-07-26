@@ -8,7 +8,6 @@
   <link rel="manifest" href="manifest.webmanifest">
   <title>Silicon Workshop — PC Builder</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="web-sources.css">
 </head>
 <body>
 <header class="topbar">
@@ -22,8 +21,8 @@
     <div id="categories" class="categories"></div>
     <div class="catalog-tools web-sync-panel">
       <div class="source-heading"><strong>Live web catalog</strong><span id="webSourceStatus" class="source-status">Built-in only</span></div>
-      <button id="syncWebPartsBtn" class="primary web-sync-button">Get parts, specs, and images from the web</button>
-      <label class="compact-label">Maximum parts per source
+      <button id="syncWebPartsBtn" class="primary web-sync-button">Get parts, specs, images, and prices from the web</button>
+      <label class="compact-label">Maximum parts to load
         <select id="webPartLimit">
           <option value="50">50</option>
           <option value="100" selected>100</option>
@@ -32,7 +31,7 @@
         </select>
       </label>
       <div id="webSourceResults" class="source-results" aria-live="polite"></div>
-      <small>Combines a structured PC-parts dataset with Wikidata/Wikimedia metadata and images. Results are normalized and duplicates are merged.</small>
+      <small>Loads structured PC-part specifications and images. When a verified price is unavailable, the catalog clearly labels a calculated market-price estimate.</small>
     </div>
     <details class="catalog-tools advanced-loader">
       <summary>Load another JSON catalog</summary>
@@ -94,15 +93,17 @@
   <button id="closeTutorial" class="dialog-close" aria-label="Close">×</button>
   <h2>How to build</h2>
   <ol>
-    <li>Press <strong>Get parts, specs, and images from the web</strong> to expand the catalog.</li>
+    <li>Press <strong>Get parts, specs, images, and prices from the web</strong> to expand the catalog.</li>
     <li>Choose a category and select a part.</li>
     <li>Drag it into the matching slot. On iPhone, tap the part and then tap its slot.</li>
-    <li>Watch the compatibility panel for socket, memory, size, cooling, and power conflicts.</li>
+    <li>The selected part's image appears in its position inside the PC.</li>
+    <li>Watch the compatibility panel for socket, memory, size, cooling, space, and power conflicts.</li>
     <li>Install all nine categories and run the performance estimate.</li>
     <li>Tap an installed part in the list to remove it.</li>
   </ol>
 </dialog>
 <script src="app.js"></script>
 <script src="web-sources.js"></script>
+<script src="enhancements.js"></script>
 </body>
 </html>
